@@ -2,6 +2,7 @@
 const { PeerServer } = require('peer');
 const cors = require('cors');
 const express = require('express');
+const fs = require('fs');
 
 // Configuration
 const PORT = process.env.PEER_PORT || 9000;
@@ -13,6 +14,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Serve static files (e.g., if you want to serve an API)
+app.use(express.static('public'));
 
 // Create the PeerJS server
 const peerServer = PeerServer({
